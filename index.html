@@ -24,16 +24,20 @@
     }
     .scrolling-banner span {
         display: inline-block;
+        animation: scroll-right 15s linear infinite;
         padding-left: 100%;
-        animation: scroll-right 20s linear infinite;
     }
     @keyframes scroll-right {
         0% { transform: translateX(-100%); }
-        100% { transform: translateX(0%); }
+        100% { transform: translateX(100%); }
     }
 
     .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin-top: 2rem; }
     .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+    .update-post { text-align: left; margin-top: 2rem; background-color: #eaeaea; padding: 1rem; border-radius: 8px; color: #000; }
+    .update-post h4 { margin: 0 0 0.5rem 0; }
+    .update-post p, .update-post li { margin: 0.3rem 0; }
 
     footer { background: #333; color: white; text-align: center; padding: 1rem; margin-top: 2rem; }
     footer a { color: #4ABEFF; text-decoration: none; font-weight: bold; display: block; margin-bottom: 0.5rem; }
@@ -43,6 +47,7 @@
     .dark-mode nav a { color: #f9f9f9; }
     .dark-mode footer { background-color: #1f1f1f; color: #f9f9f9; }
     .dark-mode .logo { color: white; }
+    .dark-mode .update-post { background-color: white; color: black; }
 
     .toggle-switch { position: relative; display: inline-block; width: 50px; height: 24px; margin-left: 2rem; }
     .toggle-switch input { opacity: 0; width: 0; height: 0; }
@@ -69,13 +74,30 @@
 </header>
 
 <div class="scrolling-banner">
-    <span>Welcome to adtusy.org!‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎  Glad to have you here :)</span>
+    <span>Welcome to adtusy.org! :)</span>
 </div>
 
 <div class="container">
+    <p>Welcome to my corner of the internet! I’m so happy to share my creations with you. Take your time to browse and discover my work- I hope your experience is enjoyable. Thank you for visiting! :)</p>
     <h2>Tusy's Video of the Week</h2>
     <div class="video-container">
         <iframe src="https://www.youtube.com/embed/EwTZ2xpQwpA?start=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <h3 style="margin-top: 2rem;">Updates:</h3>
+
+    <div class="update-post">
+        <h4>18/10/2025 - All Nighter</h4>
+        <p>I’ve been working all night, from 11pm until 4:30am- just building this website.</p>
+        <p>I couldn’t sleep and got bored, so I thought, hey! I’ll make a website!</p>
+        <p>Here I am, nearly 6 hours later, with a… somewhat finished website.</p>
+        <ul>
+            <li>I got the tabs for the different pages working.</li>
+            <li>Clicking the “adtusy.org” logo will take you back to the homepage.</li>
+            <li>The scrolling text was a pain to get working how I somewhat intended- it’s still not 100% perfect, but it’ll do the job.</li>
+            <li>Also, I added a video player for my 'Video of the Week'.</li>
+        </ul>
+        <p>I think I can finally go to sleep now lol.</p>
+        <p>- Tusy</p>
     </div>
 </div>
 
