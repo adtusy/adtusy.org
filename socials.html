@@ -3,36 +3,186 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Socials - adtusy.org</title>
-<link rel="icon" type="image/png" href="images/favicon.png">
+<title>adtusy.org</title>
 <link href="https://fonts.googleapis.com/css2?family=Minecraftia&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="images/favicon.png">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
-    body { margin: 0; font-family: Arial, sans-serif; background-color: #f9f9f9; color: #333; transition: background-color 0.3s, color 0.3s; }
-    header { display: flex; align-items: center; justify-content: space-between; background-color: white; padding: 1rem 2rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-    .logo { font-family: 'Minecraftia', sans-serif; font-size: 1.5rem; color: black; text-decoration: none; transition: color 0.3s; }
-    nav a { margin-left: 2rem; text-decoration: none; color: black; font-weight: bold; }
-    nav a:hover { text-decoration: underline; }
-    .container { max-width: 900px; margin: 2rem auto; padding: 0 1rem; text-align: center; }
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+        color: #333;
+        overflow-x: hidden;
+        transition: background-color 0.3s, color 0.3s;
+    }
+    header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: white;
+        padding: 1rem 2rem;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        z-index: 10;
+        position: relative;
+    }
+    .logo {
+        font-family: 'Minecraftia', sans-serif;
+        font-size: 1.5rem;
+        color: black;
+        text-decoration: none;
+        transition: color 0.3s;
+    }
+    nav a {
+        margin-left: 2rem;
+        text-decoration: none;
+        color: black;
+        font-weight: bold;
+    }
+    nav a:hover {
+        text-decoration: underline;
+    }
 
-    footer { background: #333; color: white; text-align: center; padding: 1rem; margin-top: 2rem; }
-    footer a { color: #4ABEFF; text-decoration: none; font-weight: bold; display: block; margin-bottom: 0.5rem; }
+    .container {
+        max-width: 1000px;
+        margin: 2rem auto;
+        text-align: center;
+        padding: 1rem;
+        position: relative;
+        z-index: 2;
+    }
 
-    .dark-mode { background-color: #121212; color: #f9f9f9; }
-    .dark-mode header { background-color: #1f1f1f; }
-    .dark-mode nav a { color: #f9f9f9; }
-    .dark-mode footer { background-color: #1f1f1f; color: #f9f9f9; }
-    .dark-mode .logo { color: white; }
+    /* Social Grid */
+    .social-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 equal columns */
+    gap: 20px; /* spacing between cards */
+    max-width: 900px; /* container width */
+    margin: 2rem auto; /* center grid */
+}
 
-    .toggle-switch { position: relative; display: inline-block; width: 50px; height: 24px; margin-left: 2rem; }
-    .toggle-switch input { opacity: 0; width: 0; height: 0; }
-    .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: 0.4s; border-radius: 34px; }
-    .slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px; background-color: white; transition: 0.4s; border-radius: 50%; }
-    input:checked + .slider { background-color: #4CAF50; }
-    input:checked + .slider:before { transform: translateX(26px); }
+.social-card {
+    width: 100%; /* fills the entire grid cell */
+    padding: 1.5rem;
+    border-radius: 12px;
+    background-color: #222;
+    color: white;
+    text-align: center;
+    transition: all 0.3s ease;
+}
 
-    .socials { display: flex; justify-content: center; flex-wrap: wrap; margin-top: 2rem; gap: 2rem; }
-    .social-item { text-align: center; }
-    .social-item a { color: #4ABEFF; text-decoration: none; font-weight: bold; display: block; margin-top: 0.2rem; }
+    .social-card i {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+    }
+    .social-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 0 15px rgba(74,190,255,0.5);
+    }
+
+    /* Footer */
+    footer {
+        background: #333;
+        color: white;
+        text-align: center;
+        padding: 1rem;
+        margin-top: 2rem;
+        position: relative;
+        z-index: 2;
+    }
+    footer a {
+        color: #4ABEFF;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    /* Dark Mode */
+    .dark-mode {
+        background-color: #121212;
+        color: #f9f9f9;
+    }
+    .dark-mode header {
+        background-color: #1f1f1f;
+    }
+    .dark-mode nav a {
+        color: #f9f9f9;
+    }
+    .dark-mode footer {
+        background-color: #1f1f1f;
+        color: #f9f9f9;
+    }
+    .dark-mode .logo {
+        color: white;
+    }
+    .dark-mode .social-card {
+        background-color: white;
+        color: black;
+    }
+
+    /* Toggle Switch */
+    .toggle-switch {
+        position: relative;
+        display: inline-block;
+        width: 50px;
+        height: 24px;
+        margin-left: 2rem;
+    }
+    .toggle-switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: 0.4s;
+        border-radius: 34px;
+    }
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 18px;
+        width: 18px;
+        left: 3px;
+        bottom: 3px;
+        background-color: white;
+        transition: 0.4s;
+        border-radius: 50%;
+    }
+    input:checked + .slider {
+        background-color: #4ABEFF;
+    }
+    input:checked + .slider:before {
+        transform: translateX(26px);
+    }
+
+    /* Particle Background */
+    #particle-canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        pointer-events: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+        .social-grid {
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* 2 per row if needed */
+        }
+    }
+    @media (max-width: 500px) {
+        .social-grid {
+            grid-template-columns: 1fr; /* 1 per row on mobile */
+        }
+    }
 </style>
 </head>
 <body>
@@ -51,35 +201,49 @@
     </nav>
 </header>
 
-<div class="container">
-    <h1>My Social Media links:</h1>
-    <div class="socials">
-        <div class="social-item">
-            <div>Discord</div>
-            <a href="https://discord.gg/u3q5CMTzTM" target="_blank">@adtusy</a>
-        </div>
-        <div class="social-item">
-            <div>X</div>
-            <a href="https://x.com/adtnsy" target="_blank">@adtnsy</a>
-        </div>
-        <div class="social-item">
-            <div>GitHub</div>
-            <a href="https://github.com/adtusy" target="_blank">@adtusy</a>
-        </div>
-        <div class="social-item">
-            <div>Twitch</div>
-            <a href="https://www.twitch.tv/adtnsy" target="_blank">@adtnsy</a>
-        </div>
-        <div class="social-item">
-            <div>YouTube</div>
-            <a href="https://www.youtube.com/@adtusy" target="_blank">@adtusy</a>
-        </div>
-        <div class="social-item">
-            <div>Tiktok</div>
-            <a href="https://www.tiktok.com/@adtusy" target="_blank">@adtusy</a>
-        </div>
-    </div>
-    <p>Supporting me on social media means a lot! Your follows, likes, and engagement help me stay motivated to keep creating and sharing my projects.</p>
+<canvas id="particle-canvas"></canvas>
+
+<div class="social-grid">
+    <a href="https://discord.gg/4uDVHwrAKV" target="_blank" class="social-card">
+        <i class="fa-brands fa-discord"></i>
+        <h3>Discord</h3>
+        <p>@adtusy</p>
+    </a>
+    <a href="https://github.com/adtusy" target="_blank" class="social-card">
+        <i class="fa-brands fa-github"></i>
+        <h3>GitHub</h3>
+        <p>@adtusy</p>
+    </a>
+    <a href="https://steamcommunity.com/profiles/76561199171788644/" target="_blank" class="social-card">
+        <i class="fa-brands fa-steam"></i>
+        <h3>Steam</h3>
+        <p>@Tusy</p>
+    </a>
+    <a href="https://x.com/adtnsy" target="_blank" class="social-card">
+        <i class="fa-brands fa-x-twitter"></i>
+        <h3>X</h3>
+        <p>@adtnsy</p>
+    </a>
+    <a href="https://www.twitch.tv/adtnsy" target="_blank" class="social-card">
+        <i class="fa-brands fa-twitch"></i>
+        <h3>Twitch</h3>
+        <p>@adtnsy</p>
+    </a>
+    <a href="https://www.youtube.com/@adtusy" target="_blank" class="social-card">
+        <i class="fa-brands fa-youtube"></i>
+        <h3>YouTube</h3>
+        <p>@adtusy</p>
+    </a>
+    <a href="https://www.tiktok.com/@adtusy" target="_blank" class="social-card">
+        <i class="fa-brands fa-tiktok"></i>
+        <h3>TikTok</h3>
+        <p>@adtusy</p>
+    </a>
+    <a href="https://open.spotify.com/user/31i24yntp376jxwdpmdvmmbrnq5y?si=19480229850245cd" target="_blank" class="social-card">
+        <i class="fa-brands fa-spotify"></i>
+        <h3>Spotify</h3>
+        <p>@Tusy</p>
+    </a>
 </div>
 
 <footer>
@@ -88,6 +252,7 @@
 </footer>
 
 <script>
+// Dark Mode
 const toggleInput = document.getElementById('modeToggle');
 if (localStorage.getItem('darkMode') === 'enabled') {
     document.body.classList.add('dark-mode');
@@ -99,6 +264,76 @@ toggleInput.addEventListener('change', () => {
     } else {
         localStorage.setItem('darkMode', 'disabled');
     }
+});
+
+// Particle Background
+const canvas = document.getElementById('particle-canvas');
+const ctx = canvas.getContext('2d');
+let width = canvas.width = window.innerWidth;
+let height = canvas.height = window.innerHeight;
+
+const particles = [];
+const particleCount = 60;
+let mouse = {x: width/2, y: height/2};
+const cursorTrail = [];
+
+class Particle {
+    constructor() { this.reset(); }
+    reset() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.vx = (Math.random() - 0.5) * 0.5;
+        this.vy = (Math.random() - 0.5) * 0.5;
+        this.size = Math.random() * 3 + 1;
+        this.opacity = Math.random() * 0.5 + 0.2;
+    }
+    draw() {
+        const isDark = document.body.classList.contains('dark-mode');
+        ctx.fillStyle = isDark ? `rgba(255,255,255,${this.opacity})` : `rgba(74,190,255,${this.opacity})`;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI*2);
+        ctx.fill();
+    }
+    update() {
+        const dx = mouse.x - this.x;
+        const dy = mouse.y - this.y;
+        this.vx += dx * 0.0005;
+        this.vy += dy * 0.0005;
+        this.x += this.vx;
+        this.y += this.vy;
+
+        if (this.x < 0 || this.x > width || this.y < 0 || this.y > height) this.reset();
+        this.draw();
+    }
+}
+
+for(let i=0;i<particleCount;i++) particles.push(new Particle());
+
+function animate() {
+    ctx.clearRect(0,0,width,height);
+
+    cursorTrail.forEach((c, idx) => {
+        ctx.beginPath();
+        ctx.fillStyle = `rgba(74,190,255,${(cursorTrail.length-idx)/cursorTrail.length * 0.4})`;
+        ctx.arc(c.x, c.y, 5, 0, Math.PI*2);
+        ctx.fill();
+    });
+
+    particles.forEach(p => p.update());
+    requestAnimationFrame(animate);
+}
+animate();
+
+window.addEventListener('resize', () => {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+});
+
+window.addEventListener('mousemove', e => {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+    cursorTrail.push({x:e.clientX, y:e.clientY});
+    if(cursorTrail.length>20) cursorTrail.shift();
 });
 </script>
 
