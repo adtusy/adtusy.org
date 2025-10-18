@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Socials - adtusy.org</title>
+<link rel="icon" type="image/png" href="images/favicon.png">
 <link href="https://fonts.googleapis.com/css2?family=Minecraftia&display=swap" rel="stylesheet">
 <style>
     body { margin: 0; font-family: Arial, sans-serif; background-color: #f9f9f9; color: #333; transition: background-color 0.3s, color 0.3s; }
@@ -12,9 +13,7 @@
     nav a { margin-left: 2rem; text-decoration: none; color: black; font-weight: bold; }
     nav a:hover { text-decoration: underline; }
     .container { max-width: 900px; margin: 2rem auto; padding: 0 1rem; text-align: center; }
-    .socials-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; margin-top: 2rem; }
-    .social { display: flex; flex-direction: column; align-items: center; }
-    .social a { margin-top: 0.3rem; color: #4ABEFF; text-decoration: none; font-weight: bold; }
+
     footer { background: #333; color: white; text-align: center; padding: 1rem; margin-top: 2rem; }
     footer a { color: #4ABEFF; text-decoration: none; font-weight: bold; display: block; margin-bottom: 0.5rem; }
 
@@ -30,6 +29,9 @@
     .slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px; background-color: white; transition: 0.4s; border-radius: 50%; }
     input:checked + .slider { background-color: #4CAF50; }
     input:checked + .slider:before { transform: translateX(26px); }
+
+    .socials a { display: block; margin: 1rem 0; font-size: 1.2rem; color: #333; text-decoration: none; }
+    .socials a:hover { color: #4ABEFF; }
 </style>
 </head>
 <body>
@@ -50,39 +52,15 @@
 
 <div class="container">
     <h1>My Social Media links:</h1>
-    <div class="socials-container">
-        <div class="social">
-            <p>Discord</p>
-            <p>@adtusy</p>
-            <a href="https://discord.gg/u3q5CMTzTM" target="_blank">Visit</a>
-        </div>
-        <div class="social">
-            <p>X</p>
-            <p>@adtnsy</p>
-            <a href="https://x.com/adtnsy" target="_blank">Visit</a>
-        </div>
-        <div class="social">
-            <p>GitHub</p>
-            <p>@adtusy</p>
-            <a href="https://github.com/adtusy" target="_blank">Visit</a>
-        </div>
-        <div class="social">
-            <p>Twitch</p>
-            <p>@adtnsy</p>
-            <a href="https://www.twitch.tv/adtnsy" target="_blank">Visit</a>
-        </div>
-        <div class="social">
-            <p>YouTube</p>
-            <p>@adtusy</p>
-            <a href="https://www.youtube.com/@adtusy" target="_blank">Visit</a>
-        </div>
-        <div class="social">
-            <p>Tiktok</p>
-            <p>@adtusy</p>
-            <a href="https://www.tiktok.com/@adtusy" target="_blank">Visit</a>
-        </div>
+    <div class="socials">
+        <a href="https://discord.gg/u3q5CMTzTM" target="_blank">Discord (@adtusy)</a>
+        <a href="https://x.com/adtnsy" target="_blank">X (@adtnsy)</a>
+        <a href="https://github.com/adtusy" target="_blank">GitHub (@adtusy)</a>
+        <a href="https://www.twitch.tv/adtnsy" target="_blank">Twitch (@adtnsy)</a>
+        <a href="https://www.youtube.com/@adtusy" target="_blank">YouTube (@adtusy)</a>
+        <a href="https://www.tiktok.com/@adtusy" target="_blank">Tiktok (@adtusy)</a>
     </div>
-    <p>Supporting me on social media means a lot and helps me continue sharing my projects and progress!</p>
+    <p>Supporting me on social media means a lot! Your follows, likes, and engagement help me stay motivated to keep creating and sharing my projects.</p>
 </div>
 
 <footer>
