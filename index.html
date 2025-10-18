@@ -8,11 +8,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Minecraftia&display=swap" rel="stylesheet">
 <style>
     body { margin: 0; font-family: Arial, sans-serif; background-color: #f9f9f9; color: #333; transition: background-color 0.3s, color 0.3s; }
-    header { display: flex; align-items: center; justify-content: space-between; background-color: white; padding: 1rem 2rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    header { display: flex; align-items: center; justify-content: space-between; background-color: white; padding: 1rem 2rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); z-index: 10; position: relative; }
     .logo { font-family: 'Minecraftia', sans-serif; font-size: 1.5rem; color: black; text-decoration: none; transition: color 0.3s; }
     nav a { margin-left: 2rem; text-decoration: none; color: black; font-weight: bold; }
     nav a:hover { text-decoration: underline; }
-    .container { max-width: 900px; margin: 2rem auto; padding: 0 1rem; text-align: center; }
+    .container { max-width: 900px; margin: 2rem auto; padding: 0 1rem; text-align: center; position: relative; z-index: 2; }
 
     .scrolling-banner {
         background-color: #4ABEFF;
@@ -21,6 +21,8 @@
         overflow: hidden;
         white-space: nowrap;
         box-sizing: border-box;
+        position: relative;
+        z-index: 2;
     }
     .scrolling-banner span {
         display: inline-block;
@@ -39,7 +41,7 @@
     .update-post h4 { margin: 0 0 0.5rem 0; }
     .update-post p, .update-post li { margin: 0.3rem 0; }
 
-    footer { background: #333; color: white; text-align: center; padding: 1rem; margin-top: 2rem; }
+    footer { background: #333; color: white; text-align: center; padding: 1rem; margin-top: 2rem; position: relative; z-index: 2; }
     footer a { color: #4ABEFF; text-decoration: none; font-weight: bold; display: block; margin-bottom: 0.5rem; }
 
     .dark-mode { background-color: #121212; color: #f9f9f9; }
@@ -55,6 +57,17 @@
     .slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px; background-color: white; transition: 0.4s; border-radius: 50%; }
     input:checked + .slider { background-color: #4CAF50; }
     input:checked + .slider:before { transform: translateX(26px); }
+
+    /* Particle Background */
+    #particle-canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        pointer-events: none;
+    }
 </style>
 </head>
 <body>
@@ -72,6 +85,8 @@
         </label>
     </nav>
 </header>
+
+<canvas id="particle-canvas"></canvas>
 
 <div class="scrolling-banner">
     <span>Welcome to adtusy.org! :)</span>
@@ -107,6 +122,7 @@
 </footer>
 
 <script>
+// Dark Mode
 const toggleInput = document.getElementById('modeToggle');
 if (localStorage.getItem('darkMode') === 'enabled') {
     document.body.classList.add('dark-mode');
@@ -119,7 +135,81 @@ toggleInput.addEventListener('change', () => {
         localStorage.setItem('darkMode', 'disabled');
     }
 });
+
+// Particle Background + Cursor Trail
+const canvas = document.getElementById('particle-canvas');
+const ctx = canvas.getContext('2d');
+let width = canvas.width = window.innerWidth;
+let height = canvas.height = window.innerHeight;
+
+const particles = [];
+const particleCount = 60;
+let mouse = {x: width/2, y: height/2};
+const cursorTrail = [];
+
+class Particle {
+    constructor() { this.reset(); }
+    reset() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.vx = (Math.random() - 0.5) * 0.5;
+        this.vy = (Math.random() - 0.5) * 0.5;
+        this.size = Math.random() * 3 + 1;
+        this.opacity = Math.random() * 0.5 + 0.2;
+    }
+    draw() {
+        const isDark = document.body.classList.contains('dark-mode');
+        ctx.fillStyle = isDark ? `rgba(255,255,255,${this.opacity})` : `rgba(74,190,255,${this.opacity})`;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI*2);
+        ctx.fill();
+    }
+    update() {
+        const dx = mouse.x - this.x;
+        const dy = mouse.y - this.y;
+        this.vx += dx * 0.0005;
+        this.vy += dy * 0.0005;
+        this.x += this.vx;
+        this.y += this.vy;
+
+        if (this.x < 0 || this.x > width || this.y < 0 || this.y > height) this.reset();
+        this.draw();
+    }
+}
+
+for(let i=0;i<particleCount;i++) particles.push(new Particle());
+
+function animate() {
+    ctx.clearRect(0,0,width,height);
+
+    cursorTrail.forEach((c, idx) => {
+        ctx.beginPath();
+        ctx.fillStyle = `rgba(74,190,255,${(cursorTrail.length-idx)/cursorTrail.length * 0.4})`;
+        ctx.arc(c.x, c.y, 5, 0, Math.PI*2);
+        ctx.fill();
+    });
+
+    particles.forEach(p => p.update());
+    requestAnimationFrame(animate);
+}
+animate();
+
+window.addEventListener('resize', () => {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+});
+
+window.addEventListener('mousemove', e => {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+    cursorTrail.push({x:e.clientX, y:e.clientY});
+    if(cursorTrail.length>20) cursorTrail.shift();
+});
 </script>
 
 </body>
 </html>
+
+</body>
+</html>
+
