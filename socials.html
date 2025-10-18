@@ -30,8 +30,9 @@
     input:checked + .slider { background-color: #4CAF50; }
     input:checked + .slider:before { transform: translateX(26px); }
 
-    .socials a { display: block; margin: 1rem 0; font-size: 1.2rem; color: #333; text-decoration: none; }
-    .socials a:hover { color: #4ABEFF; }
+    .socials { display: flex; justify-content: center; flex-wrap: wrap; margin-top: 2rem; gap: 2rem; }
+    .social-item { text-align: center; }
+    .social-item a { color: #4ABEFF; text-decoration: none; font-weight: bold; display: block; margin-top: 0.2rem; }
 </style>
 </head>
 <body>
@@ -53,12 +54,30 @@
 <div class="container">
     <h1>My Social Media links:</h1>
     <div class="socials">
-        <a href="https://discord.gg/u3q5CMTzTM" target="_blank">Discord (@adtusy)</a>
-        <a href="https://x.com/adtnsy" target="_blank">X (@adtnsy)</a>
-        <a href="https://github.com/adtusy" target="_blank">GitHub (@adtusy)</a>
-        <a href="https://www.twitch.tv/adtnsy" target="_blank">Twitch (@adtnsy)</a>
-        <a href="https://www.youtube.com/@adtusy" target="_blank">YouTube (@adtusy)</a>
-        <a href="https://www.tiktok.com/@adtusy" target="_blank">Tiktok (@adtusy)</a>
+        <div class="social-item">
+            <div>Discord</div>
+            <a href="https://discord.gg/u3q5CMTzTM" target="_blank">@adtusy</a>
+        </div>
+        <div class="social-item">
+            <div>X</div>
+            <a href="https://x.com/adtnsy" target="_blank">@adtnsy</a>
+        </div>
+        <div class="social-item">
+            <div>GitHub</div>
+            <a href="https://github.com/adtusy" target="_blank">@adtusy</a>
+        </div>
+        <div class="social-item">
+            <div>Twitch</div>
+            <a href="https://www.twitch.tv/adtnsy" target="_blank">@adtnsy</a>
+        </div>
+        <div class="social-item">
+            <div>YouTube</div>
+            <a href="https://www.youtube.com/@adtusy" target="_blank">@adtusy</a>
+        </div>
+        <div class="social-item">
+            <div>Tiktok</div>
+            <a href="https://www.tiktok.com/@adtusy" target="_blank">@adtusy</a>
+        </div>
     </div>
     <p>Supporting me on social media means a lot! Your follows, likes, and engagement help me stay motivated to keep creating and sharing my projects.</p>
 </div>
