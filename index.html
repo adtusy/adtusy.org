@@ -9,30 +9,37 @@
 <style>
     body { margin: 0; font-family: Arial, sans-serif; background-color: #f9f9f9; color: #333; transition: background-color 0.3s, color 0.3s; }
     header { display: flex; align-items: center; justify-content: space-between; background-color: white; padding: 1rem 2rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); z-index: 10; position: relative; }
-    .logo { font-family: 'Minecraftia', sans-serif; font-size: 1.5rem; color: black; text-decoration: none; transition: color 0.3s; }
-    nav a { margin-left: 2rem; text-decoration: none; color: black; font-weight: bold; }
-    nav a:hover { text-decoration: underline; }
-    .container { max-width: 900px; margin: 2rem auto; padding: 0 1rem; text-align: center; position: relative; z-index: 2; }
-
-    .scrolling-banner {
-        background-color: #4ABEFF;
-        color: white;
-        padding: 0.5rem 0;
-        overflow: hidden;
-        white-space: nowrap;
-        box-sizing: border-box;
+    .logo { font-family: 'Minecraftia', sans-serif; font-size: 1.5rem; color: black; text-decoration: none; transition: color 0.3s; margin-right: 2rem; }
+    .header-left { display: flex; align-items: center; }
+    
+    /* Nav button styles with underline animation */
+    .header-left a.button-link, nav a {
+        margin-left: 2rem;
+        text-decoration: none;
+        color: black;
+        font-weight: bold;
         position: relative;
-        z-index: 2;
+        transition: color 0.3s;
     }
-    .scrolling-banner span {
-        display: inline-block;
-        animation: scroll-right 15s linear infinite;
-        padding-left: 100%;
+    .header-left a.button-link::after, nav a::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -2px;
+        left: 0;
+        background-color: #4ABEFF;
+        transition: width 0.3s;
     }
-    @keyframes scroll-right {
-        0% { transform: translateX(-100%); }
-        100% { transform: translateX(100%); }
+    .header-left a.button-link:hover::after, nav a:hover::after {
+        width: 100%;
     }
+    .header-left a.button-link:hover, nav a:hover {
+        color: #4ABEFF;
+    }
+
+    nav { display: flex; align-items: center; }
+    .container { max-width: 900px; margin: 2rem auto; padding: 0 1rem; text-align: center; position: relative; z-index: 2; }
 
     .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin-top: 2rem; }
     .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
@@ -60,9 +67,12 @@
     footer { background: #333; color: white; text-align: center; padding: 1rem; margin-top: 2rem; position: relative; z-index: 2; }
     footer a { color: #4ABEFF; text-decoration: none; font-weight: bold; display: block; margin-bottom: 0.5rem; }
 
+    /* Dark mode styles */
     .dark-mode { background-color: #121212; color: #f9f9f9; }
     .dark-mode header { background-color: #1f1f1f; }
-    .dark-mode nav a { color: #f9f9f9; }
+    .dark-mode nav a, .dark-mode .header-left a.button-link { color: #f9f9f9; }
+    .dark-mode nav a::after, .dark-mode .header-left a.button-link::after { background-color: #4ABEFF; }
+    .dark-mode nav a:hover, .dark-mode .header-left a.button-link:hover { color: #4ABEFF; }
     .dark-mode footer { background-color: #1f1f1f; color: #f9f9f9; }
     .dark-mode .logo { color: white; }
     .dark-mode .update-post { background-color: white; color: black; }
@@ -89,7 +99,10 @@
 <body>
 
 <header>
-    <a href="index.html" class="logo">adtusy.org</a>
+    <div class="header-left">
+        <a href="index.html" class="logo">adtusy.org</a>
+        <a href="https://discord.gg/4uDVHwrAKV" target="_blank" class="button-link">Discord</a>
+    </div>
     <nav>
         <a href="about.html">About</a>
         <a href="https://github.com/adtusy?tab=projects" target="_blank">Projects</a>
@@ -104,10 +117,6 @@
 
 <canvas id="particle-canvas"></canvas>
 
-<div class="scrolling-banner">
-    <span>Welcome to adtusy.org! :)</span>
-</div>
-
 <div class="container">
     <p>Welcome to my corner of the internet! I’m so happy to share my creations with you. Take your time to browse and discover my work- I hope your experience is enjoyable. Thank you for visiting! :)</p>
     <h2>Tusy's Video of the Week</h2>
@@ -116,7 +125,6 @@
     </div>
     <h3 style="margin-top: 2rem;">Updates:</h3>
 
-    <!-- New Update Post -->
     <div class="update-post">
         <h4>18/10/2025 - Quick update</h4>
         <p class="update-post-subheading">Changes in v1.1:</p>
@@ -125,11 +133,9 @@
             <li>Updated “Socials” page with clickable social media panels. Panels now enlarge and show a blue glow whilst the user hovers over them.</li>
         </ul>
         <p>These updates are designed to make the site more interactive and engaging for users.</p>
-		
-		        <p>- Tusy</p>
+        <p>- Tusy</p>
     </div>
 
-    <!-- Existing Update Post -->
     <div class="update-post">
         <h4>18/10/2025 - All Nighter</h4>
         <p>I’ve been working all night, from 11pm until 4:30am- just building this website.</p>
