@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About - adtusy.org</title>
+<link href="https://fonts.googleapis.com/css2?family=Minecraftia&display=swap" rel="stylesheet">
+<style>
+    body { margin: 0; font-family: Arial, sans-serif; background-color: #f9f9f9; color: #333; transition: background-color 0.3s, color 0.3s; }
+    header { display: flex; align-items: center; justify-content: space-between; background-color: white; padding: 1rem 2rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    .logo { font-family: 'Minecraftia', sans-serif; font-size: 1.5rem; color: black; text-decoration: none; transition: color 0.3s; }
+    nav a { margin-left: 2rem; text-decoration: none; color: black; font-weight: bold; }
+    nav a:hover { text-decoration: underline; }
+    .container { max-width: 900px; margin: 2rem auto; padding: 0 1rem; }
+    footer { background: #333; color: white; text-align: center; padding: 1rem; margin-top: 2rem; }
+    footer a { color: #4ABEFF; text-decoration: none; font-weight: bold; display: block; margin-bottom: 0.5rem; }
+
+    .dark-mode { background-color: #121212; color: #f9f9f9; }
+    .dark-mode header { background-color: #1f1f1f; }
+    .dark-mode nav a { color: #f9f9f9; }
+    .dark-mode footer { background-color: #1f1f1f; color: #f9f9f9; }
+    .dark-mode .logo { color: white; }
+
+    .toggle-switch { position: relative; display: inline-block; width: 50px; height: 24px; margin-left: 2rem; }
+    .toggle-switch input { opacity: 0; width: 0; height: 0; }
+    .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: 0.4s; border-radius: 34px; }
+    .slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px; background-color: white; transition: 0.4s; border-radius: 50%; }
+    input:checked + .slider { background-color: #4CAF50; }
+    input:checked + .slider:before { transform: translateX(26px); }
+</style>
+</head>
+<body>
+
+<header>
+    <a href="index.html" class="logo">adtusy.org</a>
+    <nav>
+        <a href="about.html">About</a>
+        <a href="https://github.com/adtusy?tab=projects" target="_blank">Projects</a>
+        <a href="socials.html">Socials</a>
+        <a href="contact.html">Contact</a>
+        <label class="toggle-switch">
+            <input type="checkbox" id="modeToggle">
+            <span class="slider"></span>
+        </label>
+    </nav>
+</header>
+
+<div class="container">
+    <p>Hi, I’m Tusy! I have a passion for computers and video games, and my favorite game is Minecraft. I created this website as a way to learn more about coding and web development. Here, I’ll be sharing blogs to keep you updated on my projects, progress, and discoveries along the way. I’m excited to explore, learn, and grow, and I hope you enjoy following my journey!</p>
+
+    <p>This website is my very first project, and I was incredibly excited to create it. While I’m new to coding, I’m not new to computers. I’ve been fascinated by them for years. I received my first computer in late 2015, and since then, I’ve built three gaming machines from scratch.</p>
+
+    <p>If you’re curious, my current setup consists of:</p>
+    <ul>
+        <li>CPU: Intel Core i5-12400F</li>
+        <li>GPU: GeForce RTX 3060</li>
+        <li>RAM: 2 × 16GB DDR5</li>
+    </ul>
+
+    <p>This is the machine I’m using to build this website and work on my other projects. My favorite piece of my setup has to be my keyboard — I run the Rainy75 from Wobkey.</p>
+
+    <p>Thanks for checking out my website! I hope you enjoy exploring it and following along with my projects.</p>
+</div>
+
+<footer>
+    <p style="color: white; margin-bottom: 0.5rem;">Want to stay up-to-date? <a href="https://discord.gg/u3q5CMTzTM" target="_blank">Join the Discord</a>!</p>
+    &copy; 2025 adtusy.org
+</footer>
+
+<script>
+const toggleInput = document.getElementById('modeToggle');
+if (localStorage.getItem('darkMode') === 'enabled') {
+    document.body.classList.add('dark-mode');
+    toggleInput.checked = true;
+}
+toggleInput.addEventListener('change', () => {
+    if (document.body.classList.toggle('dark-mode')) {
+        localStorage.setItem('darkMode', 'enabled');
+    } else {
+        localStorage.setItem('darkMode', 'disabled');
+    }
+});
+</script>
+
+</body>
+</html>
