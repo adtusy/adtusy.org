@@ -1,248 +1,201 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>adtusy.org</title>
-<link rel="icon" type="image/png" href="images/favicon.png">
-<link href="https://fonts.googleapis.com/css2?family=Minecraftia&display=swap" rel="stylesheet">
-<style>
-    body { margin: 0; font-family: Arial, sans-serif; background-color: #f9f9f9; color: #333; transition: background-color 0.3s, color 0.3s; }
-    header { display: flex; align-items: center; justify-content: space-between; background-color: white; padding: 1rem 2rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); z-index: 10; position: relative; }
-    .logo { font-family: 'Minecraftia', sans-serif; font-size: 1.5rem; color: black; text-decoration: none; transition: color 0.3s; margin-right: 2rem; }
-    .header-left { display: flex; align-items: center; }
-    
-    /* Nav button styles with underline animation */
-    .header-left a.button-link, nav a {
-        margin-left: 2rem;
-        text-decoration: none;
-        color: black;
-        font-weight: bold;
-        position: relative;
-        transition: color 0.3s;
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>adtusy.org — Home</title>
+  <style>
+    :root {
+      --bg: #ffffff; --fg: #0b1220; --muted: #51617a;
+      --accent: #5865f2; --nav-bg: #ffffff; --banner-bg: #5865f2;
+      --card-bg: #f5f5f5; --glass: rgba(255,255,255,0.6);
+      --transition: background-color 0.4s ease, color 0.4s ease;
     }
-    .header-left a.button-link::after, nav a::after {
-        content: '';
-        position: absolute;
-        width: 0;
-        height: 2px;
-        bottom: -2px;
-        left: 0;
-        background-color: #4ABEFF;
-        transition: width 0.3s;
-    }
-    .header-left a.button-link:hover::after, nav a:hover::after {
-        width: 100%;
-    }
-    .header-left a.button-link:hover, nav a:hover {
-        color: #4ABEFF;
+    .dark {
+      --bg: #1a1a1e; --fg: #e6eef8; --muted: #9fb1c9;
+      --accent: #5865f2; --nav-bg: #202024; --banner-bg: #5865f2;
+      --card-bg: #242429; --glass: rgba(8,10,18,0.45);
+      --transition: background-color 0.4s ease, color 0.4s ease;
     }
 
-    nav { display: flex; align-items: center; }
-    .container { max-width: 900px; margin: 2rem auto; padding: 0 1rem; text-align: center; position: relative; z-index: 2; }
+    * { box-sizing: border-box; transition: var(--transition); }
+    html, body { height: 100%; margin:0; padding:0; font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; line-height:1.4; background: var(--bg); color: var(--fg); }
+    img { max-width: 100%; }
 
-    .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin-top: 2rem; }
-    .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-
-    .update-post { 
-        text-align: left; 
-        margin-top: 2rem; 
-        background-color: #eaeaea; 
-        padding: 1rem; 
-        border-radius: 8px; 
-        color: #000; 
-        border: 1px solid #ccc; 
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
-        transition: transform 0.2s, box-shadow 0.2s; 
+    /* Navigation */
+    .nav {
+      display: grid; grid-template-columns: auto 1fr auto;
+      align-items: center; gap: 1rem;
+      padding: 0.6rem 1rem;
+      backdrop-filter: blur(6px); background: var(--nav-bg);
+      position: sticky; top: 0; z-index: 40;
     }
-    .update-post:hover { 
-        transform: translateY(-3px); 
-        box-shadow: 0 8px 16px rgba(0,0,0,0.15); 
+    .brand { display:flex; align-items:center; gap:.5rem; text-decoration:none; }
+    .brand img { height:32px; }
+    .logo-text { color: var(--fg); font-weight:700; font-size:1.2rem; text-decoration:none; }
+    .controls { display:flex; align-items:center; gap:.5rem; justify-content:flex-end; }
+    .nav-links { display:flex; gap:.5rem; }
+    .nav-links a {
+      padding:.4rem .7rem; border-radius:.45rem;
+      text-decoration:none; color: var(--fg); font-weight:600;
+      position: relative; transition: color 0.3s ease;
     }
-    .update-post h4 { margin: 0 0 0.5rem 0; }
-    .update-post-subheading { font-size: 1.1rem; font-weight: bold; margin-bottom: 0.5rem; }
-    .update-post ul { padding-left: 1.5rem; margin: 0.5rem 0; }
-    .update-post li { margin: 0.3rem 0; line-height: 1.4; list-style-type: disc; }
-
-    footer { background: #333; color: white; text-align: center; padding: 1rem; margin-top: 2rem; position: relative; z-index: 2; }
-    footer a { color: #4ABEFF; text-decoration: none; font-weight: bold; display: block; margin-bottom: 0.5rem; }
-
-    /* Dark mode styles */
-    .dark-mode { background-color: #121212; color: #f9f9f9; }
-    .dark-mode header { background-color: #1f1f1f; }
-    .dark-mode nav a, .dark-mode .header-left a.button-link { color: #f9f9f9; }
-    .dark-mode nav a::after, .dark-mode .header-left a.button-link::after { background-color: #4ABEFF; }
-    .dark-mode nav a:hover, .dark-mode .header-left a.button-link:hover { color: #4ABEFF; }
-    .dark-mode footer { background-color: #1f1f1f; color: #f9f9f9; }
-    .dark-mode .logo { color: white; }
-    .dark-mode .update-post { background-color: white; color: black; }
-
-    .toggle-switch { position: relative; display: inline-block; width: 50px; height: 24px; margin-left: 2rem; }
-    .toggle-switch input { opacity: 0; width: 0; height: 0; }
-    .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: 0.4s; border-radius: 34px; }
-    .slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px; background-color: white; transition: 0.4s; border-radius: 50%; }
-    input:checked + .slider { background-color: #4CAF50; }
-    input:checked + .slider:before { transform: translateX(26px); }
-
-    /* Particle Background */
-    #particle-canvas {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 0;
-        pointer-events: none;
+    .nav-links a::after {
+      content: ''; position:absolute; left:0; bottom:0;
+      width:0%; height:2px; background-color: var(--accent); opacity:0;
+      transition: width 0.3s ease, opacity 0.3s ease;
     }
-</style>
+    .nav-links a:hover { color: var(--accent); }
+    .nav-links a:hover::after { width:100%; opacity:1; }
+
+    .switch { position:relative; display:inline-block; width:50px; height:26px; }
+    .switch input { opacity:0; width:0; height:0; }
+    .slider { position:absolute; cursor:pointer; top:0; left:0; right:0; bottom:0; background-color:#ccc; transition:0.4s; border-radius:34px; }
+    .slider:before { position:absolute; content:""; height:18px; width:18px; left:4px; bottom:4px; background-color:white; transition:0.4s; border-radius:50%; }
+    input:checked + .slider { background-color: var(--accent); }
+    input:checked + .slider:before { transform: translateX(24px); }
+
+    /* Banner */
+    .banner { background-color: var(--banner-bg); color:white; text-align:center; padding:0.5rem; font-weight:600; animation: fadeIn 1.2s ease forwards; }
+    .banner a { color:white; text-decoration:underline; }
+
+    @keyframes fadeIn { from { opacity:0; transform:translateY(-10px);} to {opacity:1; transform:translateY(0);} }
+    @keyframes slideUp { from { opacity:0; transform:translateY(30px);} to {opacity:1; transform:translateY(0);} }
+    .fade { animation:fadeIn 1s ease forwards; }
+    .slide { animation:slideUp 1s ease forwards; }
+
+    main { padding:2rem; max-width:1000px; margin:0 auto; }
+    .hero { padding:4rem 2rem; border-radius:10px; background:linear-gradient(180deg,rgba(0,0,0,0.02),transparent); text-align:center; }
+    .hero-buttons { margin-top:1.5rem; display:flex; gap:1rem; justify-content:center; }
+    .hero-buttons a { padding:0.8rem 1.5rem; border-radius:6px; text-decoration:none; font-weight:600; color:white; background-color: var(--accent); transition:0.3s; }
+    .hero-buttons a:hover { opacity:0.85; }
+
+    .about-section { background-color:#cccccc; color:#000000; width:100vw; margin-left:calc(-50vw + 50%); padding:2rem 0; box-sizing:border-box; display:flex; justify-content:center; }
+    .dark .about-section { background-color:#242429; color:#ffffff; }
+    .about-content { max-width:800px; padding:0 1rem; display:flex; flex-direction:column; align-items:center; gap:0.8rem; text-align:center; }
+    .about-content p { font-size:0.95rem; line-height:1.5; margin:0.3rem 0; }
+
+    .comment-card { background-color: var(--card-bg); border-radius:10px; padding:1rem 1.2rem; display:flex; align-items:flex-start; gap:1rem; margin-top:1rem; color:inherit; }
+    .comment-avatar { width:48px; height:48px; border-radius:50%; flex-shrink:0; }
+    .comment-body { display:flex; flex-direction:column; text-align:left; flex:1; }
+    .comment-header { display:flex; align-items:center; gap:0.6rem; margin-bottom:0.3rem; }
+    .comment-header .name { font-weight:700; font-size:1rem; }
+    .comment-header .date { font-size:0.9rem; color: var(--muted); }
+    .comment-content p { margin:0.2rem 0; line-height:1.5; }
+
+    footer { padding:2rem; text-align:center; color: var(--muted); animation:fadeIn 1s ease 0.5s forwards; }
+  </style>
 </head>
 <body>
+  <header class="nav">
+    <a class="brand" href="#">
+      <img src="images/adtusy.gif" alt="adtusy.org logo">
+      <div class="logo-text">adtusy.org</div>
+    </a>
 
-<header>
-    <div class="header-left">
-        <a href="index.html" class="logo">adtusy.org</a>
-        <a href="https://discord.gg/4uDVHwrAKV" target="_blank" class="button-link">Discord</a>
+    <div class="controls">
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="updates.html">Updates</a>
+      </nav>
+      <label class="switch"><input type="checkbox" id="themeToggle"><span class="slider"></span></label>
     </div>
-    <nav>
-        <a href="about.html">About</a>
-        <a href="https://github.com/adtusy?tab=projects" target="_blank">Projects</a>
-        <a href="socials.html">Socials</a>
-        <a href="contact.html">Contact</a>
-        <label class="toggle-switch">
-            <input type="checkbox" id="modeToggle">
-            <span class="slider"></span>
-        </label>
-    </nav>
-</header>
+  </header>
 
-<canvas id="particle-canvas"></canvas>
+  <div class="banner fade">
+    adtusy.org 🔗 
+    <a href="https://discord.gg/By7rbRjpdp" target="_blank" rel="noopener noreferrer">discord.gg/By7rbRjpdp</a>
+    <span id="discordCount" style="margin-left:0.5rem;">👥 Loading...</span>
+  </div>
 
-<div class="container">
-    <p>Welcome to my corner of the internet! I’m so happy to share my creations with you. Take your time to browse and discover my work- I hope your experience is enjoyable. Thank you for visiting! :)</p>
-    <h2>Tusy's Video of the Week:</h2>
-    <div class="video-container">
-        <iframe src="https://www.youtube.com/embed/BMAxGi2ukJw?start=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    </div>
-    <h3 style="margin-top: 2rem;">Updates:</h3>
+  <main>
+    <section class="hero slide">
+      <h1>Welcome to adtusy.org</h1>
+      <p>Projects, updates, and community - The hub for it all!</p>
+      <div class="hero-buttons">
+        <a href="https://discord.gg/By7rbRjpdp" target="_blank">Join Discord</a>
+        <a href="projects.html">View Projects</a>
+      </div>
+    </section>
 
-    <div class="update-post">
-        <h4>18/10/2025 - Quick update</h4>
-        <p class="update-post-subheading">Changes in v1.1:</p>
-        <ul>
-            <li>Added animated background across all pages with a mouse-follow effect.</li>
-            <li>Updated “Socials” page with clickable social media panels. Panels now enlarge and show a blue glow whilst the user hovers over them.</li>
-        </ul>
-        <p>These updates are designed to make the site more interactive and engaging for users.</p>
-        <p>- Tusy</p>
-    </div>
+    <section id="about" class="about-section slide">
+      <div class="about-content">
+        <h2>Behind the Code</h2>
+        <p>This website is my personal space to store, showcase, and share my projects, from scripts and small tools to Discord bots and other experiments. I created it because I wanted a place where I could keep my work organized and share it with others if I choose to.</p>
+        <p>I’m relatively new to coding, so building this site has been a learning experience. With the help of AI and a lot of trial and error, I’ve been able to figure things out and put together something I’m genuinely happy with. It was officially launched on 25th October 2025.</p>
+        <p>Beyond just storing projects, this site reflects my growth as a developer. Each script or bot represents a step in my learning journey—sometimes messy, often challenging, but always rewarding. I hope it shows that even beginners can create something meaningful with persistence and curiosity.</p>
+        <p>Feel free to explore, and maybe even use some of the tools or scripts I’ve shared. This site is both a record of what I’ve learned and a place to keep experimenting, improving, and having fun with coding.</p>
+      </div>
+    </section>
 
-    <div class="update-post">
-        <h4>18/10/2025 - All Nighter</h4>
-        <p>I’ve been working all night, from 11pm until 4:30am- just building this website.</p>
-        <p>I couldn’t sleep and got bored, so I thought, hey! I’ll make a website!</p>
-        <p>Here I am, nearly 6 hours later, with a… somewhat finished website.</p>
-        <ul>
-            <li>I got the tabs for the different pages working.</li>
-            <li>Clicking the “adtusy.org” logo will take you back to the homepage.</li>
-            <li>The scrolling text was a pain to get working how I somewhat intended- it’s still not 100% perfect, but it’ll do the job.</li>
-            <li>Also, I added a video player for my 'Video of the Week'.</li>
-        </ul>
-        <p>I think I can finally go to sleep now lol.</p>
-        <p>- Tusy</p>
-    </div>
-</div>
+    <section id="whats-new" class="slide" style="margin-top:3rem;">
+      <h2>What's New</h2>
+      <!-- Latest update will load here dynamically -->
+    </section>
+  </main>
 
-<footer>
-    <p style="color: white; margin-bottom: 0.5rem;">Want to stay up-to-date? <a href="https://discord.gg/u3q5CMTzTM" target="_blank">Join the Discord</a>!</p>
-    &copy; 2025 adtusy.org
-</footer>
+  <footer>
+    <small>© adtusy.org — built by Tusy</small>
+  </footer>
 
-<script>
-// Dark Mode
-const toggleInput = document.getElementById('modeToggle');
-if (localStorage.getItem('darkMode') === 'enabled') {
-    document.body.classList.add('dark-mode');
-    toggleInput.checked = true;
-}
-toggleInput.addEventListener('change', () => {
-    if (document.body.classList.toggle('dark-mode')) {
-        localStorage.setItem('darkMode', 'enabled');
-    } else {
-        localStorage.setItem('darkMode', 'disabled');
-    }
-});
-
-// Particle Background + Cursor Trail
-const canvas = document.getElementById('particle-canvas');
-const ctx = canvas.getContext('2d');
-let width = canvas.width = window.innerWidth;
-let height = canvas.height = window.innerHeight;
-
-const particles = [];
-const particleCount = 60;
-let mouse = {x: width/2, y: height/2};
-const cursorTrail = [];
-
-class Particle {
-    constructor() { this.reset(); }
-    reset() {
-        this.x = Math.random() * width;
-        this.y = Math.random() * height;
-        this.vx = (Math.random() - 0.5) * 0.5;
-        this.vy = (Math.random() - 0.5) * 0.5;
-        this.size = Math.random() * 3 + 1;
-        this.opacity = Math.random() * 0.5 + 0.2;
-    }
-    draw() {
-        const isDark = document.body.classList.contains('dark-mode');
-        ctx.fillStyle = isDark ? `rgba(255,255,255,${this.opacity})` : `rgba(74,190,255,${this.opacity})`;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI*2);
-        ctx.fill();
-    }
-    update() {
-        const dx = mouse.x - this.x;
-        const dy = mouse.y - this.y;
-        this.vx += dx * 0.0005;
-        this.vy += dy * 0.0005;
-        this.x += this.vx;
-        this.y += this.vy;
-
-        if (this.x < 0 || this.x > width || this.y < 0 || this.y > height) this.reset();
-        this.draw();
-    }
-}
-
-for(let i=0;i<particleCount;i++) particles.push(new Particle());
-
-function animate() {
-    ctx.clearRect(0,0,width,height);
-
-    cursorTrail.forEach((c, idx) => {
-        ctx.beginPath();
-        ctx.fillStyle = `rgba(74,190,255,${(cursorTrail.length-idx)/cursorTrail.length * 0.4})`;
-        ctx.arc(c.x, c.y, 5, 0, Math.PI*2);
-        ctx.fill();
+  <script>
+    // Theme toggle with persistence
+    const toggle = document.getElementById('themeToggle');
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.classList.toggle('dark', currentTheme === 'dark');
+    toggle.checked = currentTheme === 'dark';
+    toggle.addEventListener('change', () => {
+      const isDark = toggle.checked;
+      document.documentElement.classList.toggle('dark', isDark);
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
     });
 
-    particles.forEach(p => p.update());
-    requestAnimationFrame(animate);
-}
-animate();
+    // Discord member count
+    const discordCountEl = document.getElementById('discordCount');
+    async function fetchDiscordCount() {
+      try {
+        const response = await fetch('https://discord.com/api/v10/invites/By7rbRjpdp?with_counts=true');
+        const data = await response.json();
+        const count = data.approximate_member_count || 0;
+        discordCountEl.textContent = `👥 ${count} Members`;
+      } catch (err) {
+        discordCountEl.textContent = '👥 0 Members';
+        console.error('Failed to fetch Discord member count:', err);
+      }
+    }
+    fetchDiscordCount();
 
-window.addEventListener('resize', () => {
-    width = canvas.width = window.innerWidth;
-    height = canvas.height = window.innerHeight;
-});
+    // Load latest update from updates.html
+    async function loadLatestUpdate() {
+      const container = document.querySelector('#whats-new');
 
-window.addEventListener('mousemove', e => {
-    mouse.x = e.clientX;
-    mouse.y = e.clientY;
-    cursorTrail.push({x:e.clientX, y:e.clientY});
-    if(cursorTrail.length>20) cursorTrail.shift();
-});
-</script>
+      try {
+        const response = await fetch('updates.html');
+        const text = await response.text();
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(text, 'text/html');
+        const firstUpdate = doc.querySelector('.comment-card');
 
+        if (firstUpdate) {
+          const updateClone = firstUpdate.cloneNode(true);
+          container.innerHTML = '<h2>What\'s New</h2>';
+          container.appendChild(updateClone);
+          updateClone.classList.add('slide');
+        }
+      } catch (err) {
+        console.error('Failed to load latest update:', err);
+        container.innerHTML = '<h2>What\'s New</h2><p>Failed to load update.</p>';
+      }
+    }
+
+    // Initial load
+    loadLatestUpdate();
+
+    // Auto-refresh every 60 seconds
+    setInterval(loadLatestUpdate, 60000);
+  </script>
 </body>
 </html>
+
 
