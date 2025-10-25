@@ -87,6 +87,29 @@
       }
     }
 
+    /* Left and right panels */
+    .left-panel,
+    .right-panel {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    .right-panel {
+      position: sticky;
+      top: 6rem;
+      align-self: start;
+      height: 100%;
+    }
+    .right-panel .embed {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    .right-panel iframe {
+      flex-grow: 1;
+      border-radius: 8px;
+    }
+
     /* Embed panels */
     .embed {
       width: 100%;
@@ -166,9 +189,9 @@
       </div>
     </section>
 
-    <!-- Two-column layout starts -->
     <div class="content-layout">
-      <div>
+      <!-- Left Panel -->
+      <div class="left-panel">
         <div class="section-title">Server Information</div>
         <div class="embed slide">
           <p>EST. Nov 2024 ┃ Creator: Tusy</p>
@@ -177,7 +200,7 @@
         </div>
 
         <div class="section-title">Server Rules</div>
-        <div class="embed slide">
+        <div class="embed slide" style="flex-grow:1;">
           <div class="collapsible">1. Follow Discord Terms of Service & Community Guidelines <span class="toggle-symbol"></span></div>
           <div class="content">
             <p>&gt; <a href="https://discord.com/terms" target="_blank">Terms of Service</a></p>
@@ -207,15 +230,15 @@
         </div>
       </div>
 
-      <!-- Discord Widget on the right -->
-      <div>
+      <!-- Right Panel -->
+      <div class="right-panel">
         <div class="section-title">Live Discord Embed</div>
         <div class="embed slide fade-widget" id="widgetContainer" style="text-align:center;">
           <iframe 
             id="discordWidget"
             src="https://discord.com/widget?id=1306333344333693039&theme=light"
             width="100%" 
-            height="600"
+            height="100%"
             allowtransparency="true" 
             frameborder="0" 
             sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts">
@@ -223,7 +246,6 @@
         </div>
       </div>
     </div>
-    <!-- end of two-column layout -->
   </main>
 
   <footer>
@@ -284,6 +306,7 @@
   </script>
 </body>
 </html>
+
 
 
 
