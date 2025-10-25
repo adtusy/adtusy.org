@@ -66,26 +66,41 @@
     .fade { animation:fadeIn 1s ease forwards; }
     .slide { animation:slideUp 1s ease forwards; }
 
-    main { padding:2rem; max-width:1000px; margin:0 auto; }
+    main { padding:2rem; max-width:1200px; margin:0 auto; }
+
     .hero { padding:4rem 2rem; border-radius:10px; background:linear-gradient(180deg,rgba(0,0,0,0.02),transparent); text-align:center; }
     .hero-buttons { margin-top:1.5rem; display:flex; gap:1rem; justify-content:center; }
     .hero-buttons a { padding:0.8rem 1.5rem; border-radius:6px; text-decoration:none; font-weight:600; color:white; background-color: var(--accent); transition:0.3s; }
     .hero-buttons a:hover { opacity:0.85; }
 
-    /* Discord Embed */
+    /* Two-column layout */
+    .content-layout {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 1.5rem;
+      align-items: start;
+      margin-top: 2rem;
+    }
+    @media (max-width: 900px) {
+      .content-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Embed panels */
     .embed {
-      width: 100%; max-width: 800px;
-      margin: 0.5rem auto 1.5rem;
+      width: 100%;
       border-left: 4px solid var(--accent);
       background-color: var(--card-bg);
       border-radius: 8px;
       padding: 1rem 1.2rem;
+      margin-bottom: 1.5rem;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
       transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
     }
     .embed:hover { transform: translateY(-4px); box-shadow: 0 6px 15px rgba(0,0,0,0.15); }
 
-    /* Collapsible Rules */
+    /* Collapsible */
     .collapsible {
       cursor: pointer;
       padding: 0.5rem 0.8rem;
@@ -95,57 +110,27 @@
       align-items: center;
       transition: background-color 0.3s ease;
     }
-    .collapsible:hover {
-      background-color: rgba(88, 101, 242, 0.1);
-      border-left: 4px solid var(--accent);
-    }
+    .collapsible:hover { background-color: rgba(88,101,242,0.1); border-left: 4px solid var(--accent); }
+    .content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; padding-left: 1rem; }
 
-    .content {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease;
-      padding-left: 1rem;
-    }
-
-    /* Plus/minus toggle */
     .toggle-symbol {
-      position: relative;
-      width: 16px;
-      height: 16px;
-      display: inline-block;
+      position: relative; width: 16px; height: 16px; display: inline-block;
     }
-    .toggle-symbol::before,
-    .toggle-symbol::after {
-      content: "";
-      position: absolute;
-      top: 50%;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background: var(--fg);
-      border-radius: 2px;
-      transform: translateY(-50%);
+    .toggle-symbol::before, .toggle-symbol::after {
+      content: ""; position: absolute; top: 50%; left: 0;
+      width: 100%; height: 2px; background: var(--fg);
+      border-radius: 2px; transform: translateY(-50%);
       transition: opacity 0.3s ease;
     }
-    .toggle-symbol::after {
-      transform: translateY(-50%) rotate(90deg);
-    }
-    .collapsible.active .toggle-symbol::after {
-      opacity: 0;
-    }
+    .toggle-symbol::after { transform: translateY(-50%) rotate(90deg); }
+    .collapsible.active .toggle-symbol::after { opacity: 0; }
 
     .section-title { color:white; font-weight:700; font-size:1.4rem; text-align:center; margin-top:2rem; margin-bottom:0.5rem; }
 
     footer { padding:2rem; text-align:center; color: var(--muted); }
 
-    /* Fade effect for Discord widget */
-    .fade-widget {
-      opacity: 0;
-      transition: opacity 0.6s ease;
-    }
-    .fade-widget.visible {
-      opacity: 1;
-    }
+    .fade-widget { opacity: 0; transition: opacity 0.6s ease; }
+    .fade-widget.visible { opacity: 1; }
   </style>
 </head>
 <body>
@@ -181,61 +166,64 @@
       </div>
     </section>
 
-    <div class="section-title">Server Information</div>
-    <div class="embed slide" style="display:flex; justify-content:space-between; align-items:flex-start;">
-      <div style="flex:1; padding-right:1rem;">
-        <p>EST. Nov 2024 ┃ Creator: Tusy</p>
-        <p>&gt; 🔗 <a href="https://discord.gg/6gg28eQAYP" target="_blank">discord.gg/6gg28eQAYP</a></p>
-        <p>&gt; 🔗 <a href="https://adtusy.org" target="_blank">adtusy.org</a></p>
+    <!-- Two-column layout starts -->
+    <div class="content-layout">
+      <div>
+        <div class="section-title">Server Information</div>
+        <div class="embed slide">
+          <p>EST. Nov 2024 ┃ Creator: Tusy</p>
+          <p>&gt; 🔗 <a href="https://discord.gg/6gg28eQAYP" target="_blank">discord.gg/6gg28eQAYP</a></p>
+          <p>&gt; 🔗 <a href="https://adtusy.org" target="_blank">adtusy.org</a></p>
+        </div>
+
+        <div class="section-title">Server Rules</div>
+        <div class="embed slide">
+          <div class="collapsible">1. Follow Discord Terms of Service & Community Guidelines <span class="toggle-symbol"></span></div>
+          <div class="content">
+            <p>&gt; <a href="https://discord.com/terms" target="_blank">Terms of Service</a></p>
+            <p>&gt; <a href="https://discord.com/guidelines" target="_blank">Community Guidelines</a></p>
+          </div>
+
+          <div class="collapsible">2. Be a decent person <span class="toggle-symbol"></span></div>
+          <div class="content">
+            <p>&gt; We’re all here to hang out, basic respect goes a long way.</p>
+          </div>
+
+          <div class="collapsible">3. No spam or illegal stuff <span class="toggle-symbol"></span></div>
+          <div class="content">
+            <p>&gt; Keep it light, keep it legal.</p>
+          </div>
+
+          <div class="collapsible">4. Use the right channels (mostly) <span class="toggle-symbol"></span></div>
+          <div class="content">
+            <p>&gt; It’s fine to wander a bit, just try to keep stuff where it fits.</p>
+          </div>
+
+          <p style="margin-top: 1rem;">
+            The rules are really just that simple. I didn’t want to overcomplicate things — I just ask that everyone respects them.
+          </p>
+
+          <p id="rulesUpdated" style="font-size:0.85rem; color: var(--muted); margin-top:1rem;"></p>
+        </div>
       </div>
-      <div style="flex-shrink:0;">
-        <img src="images/sensei.png" alt="Sensei" style="height:80px; border-radius:6px;">
+
+      <!-- Discord Widget on the right -->
+      <div>
+        <div class="section-title">Live Discord Embed</div>
+        <div class="embed slide fade-widget" id="widgetContainer" style="text-align:center;">
+          <iframe 
+            id="discordWidget"
+            src="https://discord.com/widget?id=1306333344333693039&theme=light"
+            width="100%" 
+            height="600"
+            allowtransparency="true" 
+            frameborder="0" 
+            sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts">
+          </iframe>
+        </div>
       </div>
     </div>
-
-    <div class="section-title">Server Rules</div>
-    <div class="embed slide">
-      <div class="collapsible">1. Follow Discord Terms of Service & Community Guidelines <span class="toggle-symbol"></span></div>
-      <div class="content">
-        <p>&gt; <a href="https://discord.com/terms" target="_blank">Terms of Service</a></p>
-        <p>&gt; <a href="https://discord.com/guidelines" target="_blank">Community Guidelines</a></p>
-      </div>
-
-      <div class="collapsible">2. Be a decent person <span class="toggle-symbol"></span></div>
-      <div class="content">
-        <p>&gt; We’re all here to hang out, basic respect goes a long way.</p>
-      </div>
-
-      <div class="collapsible">3. No spam or illegal stuff <span class="toggle-symbol"></span></div>
-      <div class="content">
-        <p>&gt; Keep it light, keep it legal.</p>
-      </div>
-
-      <div class="collapsible">4. Use the right channels (mostly) <span class="toggle-symbol"></span></div>
-      <div class="content">
-        <p>&gt; It’s fine to wander a bit, just try to keep stuff where it fits.</p>
-      </div>
-
-      <p style="margin-top: 1rem;">
-        The rules are really just that simple. I didn’t want to overcomplicate things — I just ask that everyone respects them.
-      </p>
-
-      <p id="rulesUpdated" style="font-size:0.85rem; color: var(--muted); margin-top:1rem;"></p>
-    </div>
-
-    <!-- Live Discord Embed -->
-    <div class="section-title">Live Discord Embed</div>
-    <div class="embed slide fade-widget" id="widgetContainer" style="text-align:center;">
-      <iframe 
-        id="discordWidget"
-        src="https://discord.com/widget?id=1297303219882526770&theme=light"
-        width="100%" 
-        height="400"
-        allowtransparency="true" 
-        frameborder="0" 
-        sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts">
-      </iframe>
-    </div>
+    <!-- end of two-column layout -->
   </main>
 
   <footer>
@@ -244,7 +232,6 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      // Theme toggle
       const toggle = document.getElementById("themeToggle");
       const savedTheme = localStorage.getItem("theme") || "light";
       document.documentElement.classList.toggle("dark", savedTheme === "dark");
@@ -253,7 +240,6 @@
       const discordWidget = document.getElementById("discordWidget");
       const widgetContainer = document.getElementById("widgetContainer");
 
-      // Function to update Discord widget theme
       function updateDiscordEmbedTheme(isDark) {
         widgetContainer.classList.remove("visible");
         setTimeout(() => {
@@ -262,7 +248,6 @@
         }, 200);
         setTimeout(() => widgetContainer.classList.add("visible"), 600);
       }
-
       updateDiscordEmbedTheme(savedTheme === "dark");
 
       toggle.addEventListener("change", () => {
@@ -272,7 +257,6 @@
         updateDiscordEmbedTheme(isDark);
       });
 
-      // Discord member count
       const discordCountEl = document.getElementById("discordCount");
       fetch("https://discord.com/api/v10/invites/6gg28eQAYP?with_counts=true")
         .then(r => r.json())
@@ -281,7 +265,6 @@
         })
         .catch(() => discordCountEl.textContent = "👥 0 Members");
 
-      // Collapsible functionality
       document.querySelectorAll(".collapsible").forEach(c => {
         const content = c.nextElementSibling;
         c.addEventListener("click", () => {
@@ -294,7 +277,6 @@
         });
       });
 
-      // Last updated timestamp
       const rulesUpdatedEl = document.getElementById("rulesUpdated");
       const lastUpdated = new Date("2025-10-25");
       rulesUpdatedEl.textContent = `Last updated: ${lastUpdated.toLocaleDateString()}`;
@@ -302,6 +284,8 @@
   </script>
 </body>
 </html>
+
+
 
 
 
