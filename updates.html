@@ -157,7 +157,7 @@
 
   <div class="banner">
     adtusy.org 🔗 
-    <a href="https://discord.gg/By7rbRjpdp" target="_blank" rel="noopener noreferrer">discord.gg/By7rbRjpdp</a>
+    <a href="https://discord.gg/6gg28eQAYP" target="_blank" rel="noopener noreferrer">discord.gg/adtusy</a>
     <span id="discordCount" style="margin-left:0.5rem;">👥 Loading...</span>
   </div>
 
@@ -240,7 +240,7 @@
     const discordCountEl = document.getElementById('discordCount');
     async function fetchDiscordCount() {
       try {
-        const response = await fetch('https://discord.com/api/v10/invites/By7rbRjpdp?with_counts=true');
+        const response = await fetch('https://discord.com/api/v10/invites/6gg28eQAYP?with_counts=true');
         const data = await response.json();
         const count = data.approximate_member_count || 0;
         discordCountEl.textContent = `👥 ${count} Members`;
@@ -253,5 +253,6 @@
   </script>
 </body>
 </html>
+
 
 
