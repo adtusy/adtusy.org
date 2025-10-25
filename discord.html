@@ -81,7 +81,7 @@
       border-radius: 8px;
       padding: 1rem 1.2rem;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
     }
     .embed:hover { transform: translateY(-4px); box-shadow: 0 6px 15px rgba(0,0,0,0.15); }
 
@@ -137,6 +137,15 @@
     .section-title { color:white; font-weight:700; font-size:1.4rem; text-align:center; margin-top:2rem; margin-bottom:0.5rem; }
 
     footer { padding:2rem; text-align:center; color: var(--muted); }
+
+    /* Fade effect for Discord widget */
+    .fade-widget {
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+    .fade-widget.visible {
+      opacity: 1;
+    }
   </style>
 </head>
 <body>
@@ -213,6 +222,20 @@
 
       <p id="rulesUpdated" style="font-size:0.85rem; color: var(--muted); margin-top:1rem;"></p>
     </div>
+
+    <!-- Live Discord Embed -->
+    <div class="section-title">Live Discord Embed</div>
+    <div class="embed slide fade-widget" id="widgetContainer" style="text-align:center;">
+      <iframe 
+        id="discordWidget"
+        src="https://discord.com/widget?id=1297303219882526770&theme=light"
+        width="100%" 
+        height="400"
+        allowtransparency="true" 
+        frameborder="0" 
+        sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts">
+      </iframe>
+    </div>
   </main>
 
   <footer>
@@ -227,10 +250,26 @@
       document.documentElement.classList.toggle("dark", savedTheme === "dark");
       toggle.checked = savedTheme === "dark";
 
+      const discordWidget = document.getElementById("discordWidget");
+      const widgetContainer = document.getElementById("widgetContainer");
+
+      // Function to update Discord widget theme
+      function updateDiscordEmbedTheme(isDark) {
+        widgetContainer.classList.remove("visible");
+        setTimeout(() => {
+          const theme = isDark ? "dark" : "light";
+          discordWidget.src = `https://discord.com/widget?id=1297303219882526770&theme=${theme}`;
+        }, 200);
+        setTimeout(() => widgetContainer.classList.add("visible"), 600);
+      }
+
+      updateDiscordEmbedTheme(savedTheme === "dark");
+
       toggle.addEventListener("change", () => {
         const isDark = toggle.checked;
         document.documentElement.classList.toggle("dark", isDark);
         localStorage.setItem("theme", isDark ? "dark" : "light");
+        updateDiscordEmbedTheme(isDark);
       });
 
       // Discord member count
@@ -263,4 +302,5 @@
   </script>
 </body>
 </html>
+
 
