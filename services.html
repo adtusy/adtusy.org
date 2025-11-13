@@ -17,17 +17,12 @@
             width: 100%;
             font-family: "Trebuchet MS", Helvetica, sans-serif;
             color: white;
-            font-weight: bold;
-            overflow: hidden;
-        }
-
-        /* Background */
-        body {
             background: url('images/background.jpg') no-repeat center center fixed;
             background-size: cover;
+            overflow-y: auto;
         }
 
-        /* Navigation Bar */
+        /* Navigation */
         nav {
             position: fixed;
             top: 0;
@@ -67,12 +62,12 @@
             bottom: -5px;
             width: 0;
             height: 2px;
-            background-color: #2d64ee;
+            background-color: white;
             transition: width 0.3s ease;
         }
 
         .nav-links a:hover {
-            color: #2d64ee;
+            color: #cccccc;
         }
 
         .nav-links a:hover::after {
@@ -85,54 +80,191 @@
             vertical-align: middle;
         }
 
-        /* Coming Soon Section */
-        .coming-soon {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+        /* Services Section */
+        .services-container {
+            max-width: 1100px;
+            margin: 140px auto 80px auto;
+            padding: 0 20px;
             text-align: center;
         }
 
-        .coming-soon h1 {
-            font-size: 48px;
+        .services-header {
+            margin-bottom: 50px;
+        }
+
+        .services-header h1 {
+            font-size: 46px;
+            color: white;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .services-header p {
+            color: #cccccc;
+            font-size: 18px;
+            font-weight: normal;
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            justify-items: center;
+        }
+
+        .service {
+            background-color: rgba(0, 0, 0, 0.55);
+            border-radius: 20px;
+            padding: 30px 25px;
+            width: 100%;
+            max-width: 500px;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .service:hover {
+            transform: translateY(-6px);
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .service h2 {
+            color: white;
+            font-size: 24px;
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+        }
+
+        .service p {
+            color: #cccccc;
+            font-weight: normal;
+            font-size: 15px;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .price {
+            font-weight: bold;
+            color: white;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .quote-btn {
+            display: inline-block;
+            background-color: #2d64ee;
+            color: white;
+            text-decoration: none;
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .quote-btn:hover {
+            background-color: #1f4dcc;
+            transform: translateY(-2px);
+        }
+
+        .quote-btn:focus {
+            outline: none;
+            box-shadow: none;
+        }
+
+        /* Popup form */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+
+        .popup-content {
+            background: rgba(20, 20, 20, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            position: relative;
+        }
+
+        .popup-content h2 {
             color: white;
             margin-bottom: 10px;
         }
 
-        .coming-soon p {
-            font-size: 18px;
+        .popup-content label {
+            display: block;
+            text-align: left;
             color: #cccccc;
+            margin-top: 15px;
+            font-size: 14px;
         }
 
-        /* Responsive */
+        .popup-content input,
+        .popup-content textarea {
+            width: 100%;
+            padding: 8px;
+            border-radius: 6px;
+            border: none;
+            margin-top: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-family: inherit;
+            resize: none;
+        }
+
+        .popup-content button {
+            margin-top: 20px;
+            background-color: #2d64ee;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .popup-content button:hover {
+            background-color: #1f4dcc;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
         @media (max-width: 768px) {
-            body {
-                overflow: auto;
+            .services-container {
+                margin: 100px 15px;
             }
 
-            nav {
-                flex-direction: column;
-                align-items: flex-start;
-                padding: 10px 15px;
-            }
-
-            .nav-links {
-                flex-wrap: wrap;
-                gap: 15px;
-                justify-content: flex-start;
-            }
-
-            .logo img {
-                height: 40px;
-                margin-bottom: 8px;
-            }
-
-            .coming-soon h1 {
+            .services-header h1 {
                 font-size: 36px;
             }
 
-            .coming-soon p {
+            .service {
+                padding: 25px;
+            }
+
+            .service h2 {
+                font-size: 20px;
+            }
+
+            .service p {
                 font-size: 14px;
             }
         }
@@ -147,7 +279,7 @@
             <a href="index.html">Home</a>
             <a href="about.html">About</a>
             <a href="portfolio.html">Portfolio</a>
-            <a href="services.html">Services</a>
+            <a href="services.html" class="active">Services</a>
             <a href="contact.html">Contact</a>
             <a href="https://discord.gg/6gg28eQAYP" target="_blank">
                 <img src="images/discord.png" alt="Discord">
@@ -155,10 +287,80 @@
         </div>
     </nav>
 
-    <div class="coming-soon">
-        <h1>Coming Soon</h1>
-        <p>Our services page is currently being updated. Check back soon for more details!</p>
+    <section class="services-container">
+        <div class="services-header">
+            <h1>Our Services</h1>
+            <p>Professional car photography and digital media services — made for automotive enthusiasts, creators, and brands.</p>
+        </div>
+
+        <div class="services-grid">
+            <div class="service">
+                <h2>Car Photography</h2>
+                <p>High-quality, detail-rich car photoshoots for personal or professional use. Each session includes a set of expertly edited images ready for posting.</p>
+                <p class="price">Starting from £100 per session</p>
+                <button class="quote-btn" onclick="openPopup('Car Photography')">Get Quote ></button>
+            </div>
+
+            <div class="service">
+                <h2>Video Creation & Editing</h2>
+                <p>Short cinematic clips or promotional videos that highlight your vehicle or brand. Pricing varies depending on the workload and content type.</p>
+                <p class="price">Price varies by project</p>
+                <button class="quote-btn" onclick="openPopup('Video Creation & Editing')">Get Quote ></button>
+            </div>
+
+            <div class="service">
+                <h2>Social Media Management</h2>
+                <p>Content planning, scheduling, and engagement management to grow your automotive brand or online presence.</p>
+                <p class="price">Contact for custom quote</p>
+                <button class="quote-btn" onclick="openPopup('Social Media Management')">Get Quote ></button>
+            </div>
+
+            <div class="service">
+                <h2>Photo & Video Editing</h2>
+                <p>Professional editing and post-production to enhance your photos or videos. Ideal for refining existing content.</p>
+                <p class="price">Pricing depends on workload</p>
+                <button class="quote-btn" onclick="openPopup('Photo & Video Editing')">Get Quote ></button>
+            </div>
+
+            <div class="service">
+                <h2>Graphic Design</h2>
+                <p>Custom visuals for social media, marketing, or branding — tailored to your goals and aesthetic preferences.</p>
+                <p class="price">Price depends on project requirements</p>
+                <button class="quote-btn" onclick="openPopup('Graphic Design')">Get Quote ></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popup Form -->
+    <div class="popup" id="quotePopup">
+        <div class="popup-content">
+            <span class="close-btn" onclick="closePopup()">&times;</span>
+            <h2 id="popupTitle">Get a Quote</h2>
+            <form action="send_email.php" method="POST" class="popup-form">
+                <label for="email">Your Email:</label>
+                <input type="email" name="email" id="email" required placeholder="you@example.com">
+
+                <label for="service">Service:</label>
+                <input type="text" name="service" id="service" readonly>
+
+                <label for="message">Message:</label>
+                <textarea name="message" id="message" rows="5" required placeholder="Describe what you're looking for..."></textarea>
+
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
     </div>
+
+    <script>
+        function openPopup(service) {
+            document.getElementById('service').value = service;
+            document.getElementById('popupTitle').innerText = `Quote Request: ${service}`;
+            document.getElementById('quotePopup').style.display = 'flex';
+        }
+
+        function closePopup() {
+            document.getElementById('quotePopup').style.display = 'none';
+        }
+    </script>
 </body>
 </html>
-
