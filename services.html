@@ -154,14 +154,14 @@
             padding: 10px 18px;
             border-radius: 8px;
             font-weight: bold;
-            transition: background-color 0.3s ease, transform 0.3s ease;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
             cursor: pointer;
             border: none;
         }
 
         .quote-btn:hover {
+            transform: scale(1.05);
             background-color: #1f4dcc;
-            transform: translateY(-2px);
         }
 
         .quote-btn:focus {
@@ -177,9 +177,12 @@
             height: 100%;
             width: 100%;
             background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(4px);
             justify-content: center;
             align-items: center;
             z-index: 2000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
         .popup-content {
@@ -190,6 +193,17 @@
             max-width: 400px;
             width: 90%;
             position: relative;
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
+        }
+
+        .popup.show {
+            display: flex;
+            opacity: 1;
+        }
+
+        .popup.show .popup-content {
+            transform: scale(1);
         }
 
         .popup-content h2 {
@@ -286,43 +300,52 @@
     <section class="services-container">
         <div class="services-header">
             <h1>Our Services</h1>
-            <p>Professional car photography and digital media services — made for automotive enthusiasts, creators, and brands.</p>
+            <p>Professional car photography, videography, and digital media services — made for automotive enthusiasts, creators, and brands.</p>
         </div>
 
         <div class="services-grid">
+            <!-- Top row -->
             <div class="service">
-                <h2>Car Photography</h2>
-                <p>High-quality, detail-rich car photoshoots for personal or professional use. Each session includes a set of expertly edited images ready for posting.</p>
+                <h2>Car Photography & Videography</h2>
+                <p>High-quality images and cinematic video of your vehicles. Perfect for personal or promotional use.</p>
                 <p class="price">Starting from £100 per session</p>
-                <button class="quote-btn" onclick="openPopup('Car Photography')">Get Quote ></button>
+                <button class="quote-btn" onclick="openPopup('Car Photography & Videography')">Get Quote ></button>
             </div>
 
             <div class="service">
-                <h2>Video Creation & Editing</h2>
-                <p>Short cinematic clips or promotional videos that highlight your vehicle or brand. Pricing varies depending on the workload and content type.</p>
-                <p class="price">Price varies by project</p>
-                <button class="quote-btn" onclick="openPopup('Video Creation & Editing')">Get Quote ></button>
+                <h2>Photo Editing</h2>
+                <p>Professional editing and post-processing for your images to make them shine.</p>
+                <p class="price">Pricing depends on workload</p>
+                <button class="quote-btn" onclick="openPopup('Photo Editing')">Get Quote ></button>
             </div>
 
+            <div class="service">
+                <h2>Video Editing</h2>
+                <p>Short cinematic clips or promotional videos for your car, brand, or content.</p>
+                <p class="price">Pricing depends on workload</p>
+                <button class="quote-btn" onclick="openPopup('Video Editing')">Get Quote ></button>
+            </div>
+
+            <!-- Bottom row -->
             <div class="service">
                 <h2>Social Media Management</h2>
-                <p>Content planning, scheduling, and engagement management to grow your automotive brand or online presence.</p>
+                <p>Content planning, scheduling, and engagement to grow your automotive brand online.</p>
                 <p class="price">Contact for custom quote</p>
                 <button class="quote-btn" onclick="openPopup('Social Media Management')">Get Quote ></button>
             </div>
 
             <div class="service">
-                <h2>Photo & Video Editing</h2>
-                <p>Professional editing and post-production to enhance your photos or videos. Ideal for refining existing content.</p>
-                <p class="price">Pricing depends on workload</p>
-                <button class="quote-btn" onclick="openPopup('Photo & Video Editing')">Get Quote ></button>
+                <h2>Graphic Design</h2>
+                <p>Custom visuals for social media, marketing, and branding projects.</p>
+                <p class="price">Pricing depends on project</p>
+                <button class="quote-btn" onclick="openPopup('Graphic Design')">Get Quote ></button>
             </div>
 
             <div class="service">
-                <h2>Graphic Design</h2>
-                <p>Custom visuals for social media, marketing, or branding — tailored to your goals and aesthetic preferences.</p>
-                <p class="price">Price depends on project requirements</p>
-                <button class="quote-btn" onclick="openPopup('Graphic Design')">Get Quote ></button>
+                <h2>Branding & Logo Design</h2>
+                <p>Create logos, brand kits, and visual identity for businesses or personal brands.</p>
+                <p class="price">Pricing depends on requirements</p>
+                <button class="quote-btn" onclick="openPopup('Branding & Logo Design')">Get Quote ></button>
             </div>
         </div>
     </section>
@@ -360,33 +383,34 @@
         function openPopup(service) {
             document.getElementById('service').value = service;
             document.getElementById('popupTitle').innerText = `Quote Request: ${service}`;
-            document.getElementById('quotePopup').style.display = 'flex';
+            const popup = document.getElementById('quotePopup');
+            popup.classList.add('show');
         }
 
         function closePopup() {
-            document.getElementById('quotePopup').style.display = 'none';
+            const popup = document.getElementById('quotePopup');
+            popup.classList.remove('show');
         }
 
         function openConfirmation() {
-            document.getElementById('confirmationPopup').style.display = 'flex';
+            const popup = document.getElementById('confirmationPopup');
+            popup.classList.add('show');
         }
 
         function closeConfirmation() {
-            document.getElementById('confirmationPopup').style.display = 'none';
+            const popup = document.getElementById('confirmationPopup');
+            popup.classList.remove('show');
         }
 
+        // AJAX form submission
         const form = document.querySelector('.popup-form');
         form.addEventListener('submit', function(e) {
             e.preventDefault();
-
             const data = new FormData(form);
-
             fetch(form.action, {
                 method: "POST",
                 body: data,
-                headers: {
-                    'Accept': 'application/json'
-                }
+                headers: { 'Accept': 'application/json' }
             }).then(response => {
                 if (response.ok) {
                     closePopup();
