@@ -21,13 +21,11 @@
             overflow: hidden;
         }
 
-        /* Background Image */
         body {
             background: url('images/background.jpg') no-repeat center center fixed;
             background-size: cover;
         }
 
-        /* Navigation Bar */
         nav {
             position: fixed;
             top: 0;
@@ -41,7 +39,6 @@
             z-index: 1000;
         }
 
-        /* Logo */
         .logo {
             display: flex;
             align-items: center;
@@ -52,7 +49,6 @@
             height: 45px;
         }
 
-        /* Navigation Links */
         .nav-links {
             display: flex;
             align-items: center;
@@ -87,18 +83,6 @@
             width: 100%;
         }
 
-        .nav-links img {
-            height: 24px;
-            width: 24px;
-            vertical-align: middle;
-            transition: filter 0.3s ease;
-        }
-
-        .nav-links img:hover {
-            filter: brightness(1.5);
-        }
-
-        /* Hero Section */
         .hero {
             position: absolute;
             top: 50%;
@@ -127,7 +111,6 @@
             margin-bottom: 25px;
         }
 
-        /* Portfolio Button */
         .hero .button {
             display: inline-block;
             background-color: #2d64ee;
@@ -144,7 +127,6 @@
             background-color: #1f47b5;
         }
 
-        /* Updated Skills Panels */
         .skills {
             position: absolute;
             bottom: 30px;
@@ -184,7 +166,6 @@
             margin: 0;
         }
 
-        /* Responsive Design */
         @media (max-width: 768px) {
             body {
                 overflow: auto;
@@ -212,11 +193,6 @@
                 font-size: 14px;
             }
 
-            .nav-links img {
-                height: 20px;
-                width: 20px;
-            }
-
             .hero {
                 position: relative;
                 top: auto;
@@ -229,17 +205,14 @@
 
             .hero h2 {
                 font-size: 18px;
-                margin-bottom: 8px;
             }
 
             .hero h1 {
                 font-size: 32px;
-                margin-bottom: 12px;
             }
 
             .hero p {
                 font-size: 14px;
-                margin-bottom: 20px;
             }
 
             .skills {
@@ -273,13 +246,9 @@
             <a href="portfolio.html">Portfolio</a>
             <a href="services.html">Services</a>
             <a href="contact.html">Contact</a>
-            <a href="https://discord.gg/6gg28eQAYP" target="_blank">
-                <img src="images/discord.png" alt="Discord">
-            </a>
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <div class="hero">
         <h2>ADTUSY.ORG</h2>
         <h1>Multi media artist</h1>
@@ -287,7 +256,6 @@
         <a href="portfolio.html" class="button">Portfolio ></a>
     </div>
 
-    <!-- Updated Skills Panels -->
     <div class="skills">
         <div class="skill">
             <img src="images/cameraicon.png" alt="Camera Icon">
@@ -308,4 +276,3 @@
     </div>
 </body>
 </html>
-
