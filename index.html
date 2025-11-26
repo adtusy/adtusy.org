@@ -17,7 +17,7 @@
             width: 100%;
             font-family: "Trebuchet MS", Helvetica, sans-serif;
             font-weight: bold;
-            color: white;
+            color: black; /* TEXT COLOR CHANGED */
             overflow: hidden;
         }
 
@@ -35,7 +35,7 @@
             align-items: center;
             justify-content: space-between;
             padding: 15px 20px;
-            background-color: rgba(0, 0, 0, 0.3);
+            background-color: rgba(255, 255, 255, 0.3); /* LIGHT BG TO MATCH BLACK TEXT */
             z-index: 1000;
         }
 
@@ -59,12 +59,12 @@
         .nav-links a {
             position: relative;
             text-decoration: none;
-            color: white;
+            color: black; /* TEXT COLOR CHANGED */
             font-weight: bold;
             transition: all 0.3s ease;
         }
 
-        /* Underline changed to black */
+        /* Underline remains black */
         .nav-links a::after {
             content: '';
             position: absolute;
@@ -76,9 +76,8 @@
             transition: width 0.3s ease;
         }
 
-        /* Removed text highlighting */
         .nav-links a:hover {
-            color: white;
+            color: black;
         }
 
         .nav-links a:hover::after {
@@ -91,24 +90,26 @@
             left: 10%;
             transform: translateY(-50%);
             max-width: 600px;
+            color: black; /* TEXT COLOR CHANGED */
         }
 
         .hero h1 {
             font-size: 48px;
             font-weight: bold;
             margin-bottom: 10px;
+            color: black;
         }
 
         .hero h2 {
             font-size: 20px;
             letter-spacing: 2px;
-            color: #cccccc;
+            color: black;
             margin-bottom: 5px;
         }
 
         .hero p {
             font-size: 16px;
-            color: #dcdcdc;
+            color: black;
             font-weight: normal;
             margin-bottom: 25px;
         }
@@ -174,9 +175,7 @@
 
         <div class="nav-links">
             <a href="#" onclick="alert('Coming soon!')">Home</a>
-            <a href="#" onclick="alert('Coming soon!')">About</a>
             <a href="#" onclick="alert('Coming soon!')">Portfolio</a>
-            <a href="#" onclick="alert('Coming soon!')">Services</a>
             <a href="#" onclick="alert('Coming soon!')">Contact</a>
         </div>
     </nav>
