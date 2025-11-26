@@ -64,6 +64,7 @@
             transition: all 0.3s ease;
         }
 
+        /* Underline changed to black */
         .nav-links a::after {
             content: '';
             position: absolute;
@@ -71,12 +72,13 @@
             bottom: -5px;
             width: 0;
             height: 2px;
-            background-color: #2d64ee;
+            background-color: black;
             transition: width 0.3s ease;
         }
 
+        /* Removed text highlighting */
         .nav-links a:hover {
-            color: #2d64ee;
+            color: white;
         }
 
         .nav-links a:hover::after {
@@ -109,61 +111,6 @@
             color: #dcdcdc;
             font-weight: normal;
             margin-bottom: 25px;
-        }
-
-        .hero .button {
-            display: inline-block;
-            background-color: #2d64ee;
-            color: white;
-            text-decoration: none;
-            padding: 8px 18px;
-            border-radius: 4px;
-            font-size: 14px;
-            font-weight: bold;
-            transition: all 0.3s ease;
-        }
-
-        .hero .button:hover {
-            background-color: #1f47b5;
-        }
-
-        .skills {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 90%;
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .skill {
-            background-color: rgba(0, 0, 0, 0.35);
-            backdrop-filter: blur(4px);
-            padding: 12px 20px;
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            transition: all 0.3s ease;
-        }
-
-        .skill:hover {
-            transform: translateY(-3px);
-            color: #2d64ee;
-            background-color: rgba(0, 0, 0, 0.55);
-        }
-
-        .skill img {
-            height: 26px;
-            width: 26px;
-        }
-
-        .skill h3 {
-            font-size: 15px;
-            margin: 0;
         }
 
         @media (max-width: 768px) {
@@ -214,75 +161,30 @@
             .hero p {
                 font-size: 14px;
             }
-
-            .skills {
-                position: relative;
-                transform: none;
-                bottom: auto;
-                left: auto;
-                margin: 20px 0 40px 0;
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .skill {
-                width: 80%;
-                justify-content: center;
-            }
         }
     </style>
 </head>
 <body>
     <nav>
         <div class="logo">
-            <a href="index.html">
+            <a href="#" onclick="alert('Coming soon!')">
                 <img src="images/logo.png" alt="Adtusy Logo">
             </a>
         </div>
 
         <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="about.html">About</a>
-            <a href="portfolio.html">Portfolio</a>
-            <a href="services.html">Services</a>
-            <a href="contact.html">Contact</a>
+            <a href="#" onclick="alert('Coming soon!')">Home</a>
+            <a href="#" onclick="alert('Coming soon!')">About</a>
+            <a href="#" onclick="alert('Coming soon!')">Portfolio</a>
+            <a href="#" onclick="alert('Coming soon!')">Services</a>
+            <a href="#" onclick="alert('Coming soon!')">Contact</a>
         </div>
     </nav>
 
     <div class="hero">
         <h2>ADTUSY.ORG</h2>
-        <h1>Media Production</h1>
-        <p>Experience in various digital media formats</p>
-        <a href="portfolio.html" class="button">Portfolio ></a>
-<p style="margin-top:10px; font-size:14px; color:#dcdcdc; font-weight:normal;">
-    *I’m currently offering a BIG DISCOUNT on my next few orders to help build my portfolio!*
-</p>
-        <p style="margin-top:10px; font-size:14px; color:#dcdcdc; font-weight:normal;">
-    To enquire, please contact me via email.
-</p>
+        <h1>COMING SOON!</h1>
     </div>
 
-    <div class="skills">
-        <div class="skill">
-            <img src="images/cameraicon.png" alt="Camera Icon">
-            <h3>Photo / Videography</h3>
-        </div>
-        <div class="skill">
-            <img src="images/editicon.png" alt="Editing Icon">
-            <h3>Photo / Video Editing</h3>
-        </div>
-        <div class="skill">
-            <img src="images/socialicon.png" alt="Social Media Icon">
-            <h3>Social Media Management</h3>
-        </div>
-        <div class="skill">
-            <img src="images/designicon.png" alt="Design Icon">
-            <h3>Graphics Design</h3>
-        </div>
-    </div>
 </body>
 </html>
-
-
-
-
